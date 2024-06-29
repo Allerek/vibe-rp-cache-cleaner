@@ -5,7 +5,7 @@ on: [push]
 defaults:
   run:
     shell: bash
-    working-directory: .
+    working-directory: hash_verifier
 
 jobs:
   Build:
