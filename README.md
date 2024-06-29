@@ -6,3 +6,5 @@ Twórca narzędzia nie odpowiada za szkody powstałe w wyniku używania narzędz
 
 Aby uruchomić narzędzie, należy odpalić je za pomocą pythona, lub pliku .exe i wskazać lokalizacje do folderu z zasobami VibeRP który znajduje się w folderze 'cache' w miejscu instalacji ALT:V.
 Wszystkie pliki których checksuma nie zgadza się(mogą być niezgodne z najnowszą wersją na serwerze) zostają przeniesione do folderu 'outdated' - te zaś, których program nie rozpoznaje(zbędne pliki) przenoszone są do folderu 'unknown' i PRAWDOPODOBNIE można je bezpiecznie usunąć.
+
+Plik hashes.json będzie aktualizowany w każdą niedzielę o godzinie 20:00 
