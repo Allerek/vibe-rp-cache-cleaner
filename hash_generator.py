@@ -2,7 +2,7 @@ import os
 import hashlib
 import json
 import sys
-
+import time
 def calculate_sha256(file_path):
     """Calculate SHA256 checksum of a file."""
     sha256_hash = hashlib.sha256()
@@ -15,8 +15,10 @@ def print_progress_bar(percentage, file_path, bar_length=40):
     """Print a progress bar in the terminal."""
     block = int(round(bar_length * percentage / 100))
     progress = "#" * block + "-" * (bar_length - block)
-    sys.stdout.write(f"\rScanning: {file_path}\n[{progress}] {percentage:.2f}%")
+    sys.stdout.write(f"\nScanning: {file_path}")
     sys.stdout.flush()
+    time.sleep(.1)
+    sys.stdout.write(f"\r[{progress}] {percentage:.2f}%")
 
 def get_file_checksums(directory, exclude_files=None):
     """Get SHA256 checksums for all files in a directory except specified ones."""
@@ -32,14 +34,15 @@ def get_file_checksums(directory, exclude_files=None):
         for file in files:
             if file not in exclude_files:
                 file_path = os.path.join(root, file)
+                file_name = os.path.relpath(file_path, directory)
+                
                 # Calculate checksum
-                file_checksums[file_path] = calculate_sha256(file_path)
+                file_checksums[file_name] = calculate_sha256(file_path)
                 
                 # Update and display progress
                 scanned_files += 1
-                sys.stdout.flush()
                 percentage = (scanned_files / total_files) * 100
-                print_progress_bar(percentage, file_path)
+                print_progress_bar(percentage, file_name)
     
     return file_checksums
 
